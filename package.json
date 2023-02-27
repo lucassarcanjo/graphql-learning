@@ -1,0 +1,17 @@
+{
+  "name": "apollo-graphql",
+  "author": "Lucas Arcanjo",
+  "license": "MIT",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "apollo-server": "^3.11.1",
+    "graphql": "^16.6.0"
+  }
+}
