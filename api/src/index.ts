@@ -1,12 +1,12 @@
 import express from "express";
-import users from "./database/users.json";
-import companies from "./database/companies.json";
+import users from "./data/users.json";
+import companies from "./data/companies.json";
 
 const app = express();
 const port = process.env.PORT || 3005;
 
-app.get("/", (req, res) => {
-  res.send("Alive");
+app.get("/info", (req, res) => {
+  res.send("Healthy");
 });
 
 app.get("/users", (req, res) => {
