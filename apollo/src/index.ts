@@ -1,16 +1,31 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
-import { resolvers } from "./resolvers";
 import { typeDefs } from "./typeDefs";
+import { resolvers } from "./resolvers";
+import UsersAPI from "./services/Users";
+import CompaniesAPI from "./services/Companies";
 
-const server = new ApolloServer({
+interface ContextValue {
+  dataSources: {
+    usersAPI: UsersAPI;
+    companiesAPI: CompaniesAPI;
+  };
+}
+
+const server = new ApolloServer<ContextValue>({
   typeDefs,
   resolvers,
 });
 
-const { url } = await startStandaloneServer(server, {
+startStandaloneServer(server, {
   listen: { port: 4000 },
+  context: async () => ({
+    dataSources: {
+      usersAPI: new UsersAPI(),
+      companiesAPI: new CompaniesAPI(),
+    },
+  }),
 });
 
-console.log(`🚀 Server ready at ${url}`);
+console.log(`🚀 Server ready at http://localhost:4000/`);
