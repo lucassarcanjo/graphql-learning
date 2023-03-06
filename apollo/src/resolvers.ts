@@ -13,4 +13,14 @@ export const resolvers = {
       return dataSources.companiesAPI.getCompanies();
     },
   },
+  User: {
+    company: async (user, _, { dataSources }) => {
+      return dataSources.companiesAPI.getCompany(user.companyId);
+    },
+  },
+  Company: {
+    users: async (company, _, { dataSources }) => {
+      return dataSources.usersAPI.getUsersByCompanyId(company.id);
+    },
+  },
 };

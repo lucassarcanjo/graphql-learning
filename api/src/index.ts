@@ -21,6 +21,14 @@ app.get("/users/:id", (req, res) => {
   res.json(user);
 });
 
+app.get("/users/company/:id", (req, res) => {
+  const { id } = req.params;
+
+  const user = users.filter((user) => user.companyId.toString() === id) ?? null;
+
+  res.json(user);
+});
+
 app.get("/companies", (req, res) => {
   res.json(companies);
 });
