@@ -5,9 +5,16 @@ import { typeDefs } from "./typeDefs";
 import { resolvers } from "./resolvers";
 import UsersAPI from "./services/Users";
 import CompaniesAPI from "./services/Companies";
+import DataLoader from "dataloader";
+import { Company, User } from "./types";
+import { loaders } from "./loaders";
 
 interface ContextValue {
-  dataSources: {
+  loaders: {
+    userByCompany: DataLoader<string, User[]>;
+    company: DataLoader<number, Company>;
+  };
+  dataSources?: {
     usersAPI: UsersAPI;
     companiesAPI: CompaniesAPI;
   };
@@ -25,6 +32,7 @@ startStandaloneServer(server, {
       usersAPI: new UsersAPI(),
       companiesAPI: new CompaniesAPI(),
     },
+    loaders,
   }),
 });
 

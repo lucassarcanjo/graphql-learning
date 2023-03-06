@@ -12,8 +12,12 @@ class UsersAPI extends RESTDataSource {
     return this.get<User[]>("/users");
   }
 
-  async getUsersByCompanyId(id: string) {
-    return this.get<User[]>(`/users/company/${id}`);
+  async getUsersByCompanyIds(ids: string[]) {
+    return this.get<User[][]>(`/users/company?ids=${ids.join(",")}`);
+  }
+
+  async getUsersByIds(ids: string[]) {
+    return this.get<User[]>(`/users?ids=${ids.join(",")}`);
   }
 }
 

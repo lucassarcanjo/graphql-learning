@@ -11,6 +11,10 @@ class CompaniesAPI extends RESTDataSource {
   async getCompanies() {
     return this.get<Company[]>("/companies");
   }
+
+  async getCompaniesByIds(ids: number[]) {
+    return this.get<Company[]>(`/companies?ids=${ids.join(",")}`);
+  }
 }
 
 export default CompaniesAPI;
