@@ -1,9 +1,15 @@
 import express from "express";
+import { countRequests } from "./middleware/request";
 import users from "./data/users.json";
 import companies from "./data/companies.json";
 
 const app = express();
 const port = process.env.PORT || 3005;
+
+/**
+ * Middleware to show the request count in the console without flooding it
+ */
+app.use(countRequests());
 
 app.get("/info", (req, res) => {
   res.send("Healthy");
@@ -43,5 +49,5 @@ app.get("/companies/:id", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`🎯 Server ready at http://localhost:${port}/`);
+  console.log(`🎯 Server ready at http://localhost:${port}/\n`);
 });
