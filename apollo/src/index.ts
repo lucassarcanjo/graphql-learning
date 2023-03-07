@@ -20,13 +20,15 @@ interface ContextValue {
   };
 }
 
+const PORT = Number(process.env.PORT) || 4000;
+
 const server = new ApolloServer<ContextValue>({
   typeDefs,
   resolvers,
 });
 
 startStandaloneServer(server, {
-  listen: { port: 4000 },
+  listen: { port: PORT },
   context: async () => ({
     dataSources: {
       usersAPI: new UsersAPI(),
@@ -36,4 +38,4 @@ startStandaloneServer(server, {
   }),
 });
 
-console.log(`🚀 Server ready at http://localhost:4000/`);
+console.log(`🚀 Apollo server is ready at http://localhost:${PORT}/`);

@@ -90,5 +90,5 @@ app.get("/companies/:id", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`🎯 Server ready at http://localhost:${port}/\n`);
+  console.log(`🎯 API is ready at http://localhost:${port}/\n`);
 });

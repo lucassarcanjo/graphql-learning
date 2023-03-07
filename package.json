@@ -1,18 +1,18 @@
 {
-  "name": "apollo-graphql",
+  "name": "graphql-learning",
   "author": "Lucas Arcanjo",
   "license": "MIT",
   "version": "1.0.0",
-  "description": "",
   "private": true,
   "type": "module",
-  "main": "index.js",
   "workspaces": [
     "api",
     "apollo"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"npm:start-apollo\" \"npm:start-api\"",
+    "start-apollo": "npm start --workspace=apollo",
+    "start-api": "npm run start --workspace=api"
   },
   "devDependencies": {
     "concurrently": "^7.6.0"
